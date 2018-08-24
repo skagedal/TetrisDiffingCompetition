@@ -6,7 +6,8 @@ import UIKit
 
 class RootViewController: UIViewController {
     private lazy var menu = MenuViewController(adapters: [
-        SKRBatchUpdatesTetrisAdapter()
+        SKRBatchUpdatesTetrisAdapter(),
+        DifferenceKitTetrisAdapter()
     ])
     
     private lazy var navigation: UINavigationController = {
@@ -21,10 +22,14 @@ class RootViewController: UIViewController {
         menu.delegate = self
         embed(navigation)
     }
+    
+    private func makeGameViewController(with adapter: TetrisAdapter) -> TetrisViewController {
+        return TetrisViewController.instantiate(with: adapter)
+    }
 }
 
 extension RootViewController: MenuViewControllerDelegate {
     func menuViewController(_ menuViewController: MenuViewController, didSelect adapter: TetrisAdapter) {
-        navigation.pushViewController(adapter.makeGameViewController(), animated: true)
+        navigation.pushViewController(makeGameViewController(with: adapter), animated: true)
     }
 }

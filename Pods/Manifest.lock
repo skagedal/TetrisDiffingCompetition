@@ -1,3 +1,21 @@
-PODFILE CHECKSUM: a8ab0487434e5b53e3a34352e3b043e6d5e56696
+PODS:
+  - DifferenceKit (0.5.0):
+    - DifferenceKit/Core (= 0.5.0)
+    - DifferenceKit/UIExtensions (= 0.5.0)
+  - DifferenceKit/Core (0.5.0)
+  - DifferenceKit/UIExtensions (0.5.0):
+    - DifferenceKit/Core
+
+DEPENDENCIES:
+  - DifferenceKit
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - DifferenceKit
+
+SPEC CHECKSUMS:
+  DifferenceKit: 6fb7e9f433f548fd43f3fcbaad3d258f3a2282f7
+
+PODFILE CHECKSUM: 6cbdccecfa5833a47f42a5766be5374e97c2401a
 
 COCOAPODS: 1.5.3

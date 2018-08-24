@@ -17,6 +17,7 @@ class MenuViewController: UITableViewController {
         super.init(style: .grouped)
         
         navigationItem.title = "The Tetris Diffing Competition"
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Menu", style: .plain, target: nil, action: nil)
     }
 
     required init?(coder aDecoder: NSCoder) { unsupportedInitializer() }

@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		5E6B85B1C3D8CBAC0D09AF5B /* Pods_TetrisDiffingCompetition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6004EF95B454C045EE8C1D6A /* Pods_TetrisDiffingCompetition.framework */; };
+		F443969621308CA200EBA362 /* TetrisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F443969421308CA200EBA362 /* TetrisViewController.swift */; };
+		F443969921308E4100EBA362 /* Tetris.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F443969821308E4000EBA362 /* Tetris.storyboard */; };
 		F4CF0E5321307ADC0017E405 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CF0E5221307ADC0017E405 /* AppDelegate.swift */; };
 		F4CF0E5521307ADC0017E405 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CF0E5421307ADC0017E405 /* MenuViewController.swift */; };
 		F4CF0E5A21307ADD0017E405 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4CF0E5921307ADD0017E405 /* Assets.xcassets */; };
 		F4CF0E5D21307ADE0017E405 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4CF0E5B21307ADE0017E405 /* LaunchScreen.storyboard */; };
 		F4CF0E6821307C160017E405 /* Tetris.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CF0E6521307C160017E405 /* Tetris.swift */; };
-		F4CF0E6921307C160017E405 /* Tetris.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4CF0E6621307C160017E405 /* Tetris.storyboard */; };
-		F4CF0E6A21307C160017E405 /* TetrisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CF0E6721307C160017E405 /* TetrisViewController.swift */; };
 		F4CF0E6E21307C3A0017E405 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CF0E6C21307C3A0017E405 /* DataSource.swift */; };
 		F4CF0E6F21307C3A0017E405 /* BatchChanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CF0E6D21307C3A0017E405 /* BatchChanges.swift */; };
 		F4DE1FE321307DFB0062E0C2 /* TetrisAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DE1FE221307DFB0062E0C2 /* TetrisAdapter.swift */; };
@@ -22,12 +22,15 @@
 		F4DE1FE82130814E0062E0C2 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DE1FE72130814E0062E0C2 /* Common.swift */; };
 		F4DE1FEA2130825C0062E0C2 /* UIViewController+common.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DE1FE92130825C0062E0C2 /* UIViewController+common.swift */; };
 		F4DE1FEC213082D60062E0C2 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DE1FEB213082D60062E0C2 /* RootViewController.swift */; };
+		F4DE1FEF2130869E0062E0C2 /* DifferenceKitTetrisAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DE1FEE2130869E0062E0C2 /* DifferenceKitTetrisAdapter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6004EF95B454C045EE8C1D6A /* Pods_TetrisDiffingCompetition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TetrisDiffingCompetition.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF215A6B6807AE060E3DF3C3 /* Pods-TetrisDiffingCompetition.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TetrisDiffingCompetition.release.xcconfig"; path = "Pods/Target Support Files/Pods-TetrisDiffingCompetition/Pods-TetrisDiffingCompetition.release.xcconfig"; sourceTree = "<group>"; };
 		D16FA5BA7E6E071DBFB3AA06 /* Pods-TetrisDiffingCompetition.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TetrisDiffingCompetition.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TetrisDiffingCompetition/Pods-TetrisDiffingCompetition.debug.xcconfig"; sourceTree = "<group>"; };
+		F443969421308CA200EBA362 /* TetrisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TetrisViewController.swift; sourceTree = "<group>"; };
+		F443969821308E4000EBA362 /* Tetris.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tetris.storyboard; sourceTree = "<group>"; };
 		F4CF0E4F21307ADC0017E405 /* TetrisDiffingCompetition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TetrisDiffingCompetition.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4CF0E5221307ADC0017E405 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4CF0E5421307ADC0017E405 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -35,8 +38,6 @@
 		F4CF0E5C21307ADE0017E405 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F4CF0E5E21307ADE0017E405 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4CF0E6521307C160017E405 /* Tetris.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tetris.swift; sourceTree = "<group>"; };
-		F4CF0E6621307C160017E405 /* Tetris.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tetris.storyboard; sourceTree = "<group>"; };
-		F4CF0E6721307C160017E405 /* TetrisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TetrisViewController.swift; sourceTree = "<group>"; };
 		F4CF0E6C21307C3A0017E405 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		F4CF0E6D21307C3A0017E405 /* BatchChanges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchChanges.swift; sourceTree = "<group>"; };
 		F4DE1FE221307DFB0062E0C2 /* TetrisAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TetrisAdapter.swift; sourceTree = "<group>"; };
@@ -44,6 +45,7 @@
 		F4DE1FE72130814E0062E0C2 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		F4DE1FE92130825C0062E0C2 /* UIViewController+common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+common.swift"; sourceTree = "<group>"; };
 		F4DE1FEB213082D60062E0C2 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		F4DE1FEE2130869E0062E0C2 /* DifferenceKitTetrisAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifferenceKitTetrisAdapter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				F4CF0E6B21307C280017E405 /* SKRBatchUpdates */,
+				F4DE1FED213086760062E0C2 /* DifferenceKit */,
 				F4DE1FE221307DFB0062E0C2 /* TetrisAdapter.swift */,
 			);
 			path = Adapters;
@@ -139,9 +142,9 @@
 		F4DE1FE021307D810062E0C2 /* Tetris */ = {
 			isa = PBXGroup;
 			children = (
-				F4CF0E6621307C160017E405 /* Tetris.storyboard */,
+				F443969821308E4000EBA362 /* Tetris.storyboard */,
+				F443969421308CA200EBA362 /* TetrisViewController.swift */,
 				F4CF0E6521307C160017E405 /* Tetris.swift */,
-				F4CF0E6721307C160017E405 /* TetrisViewController.swift */,
 			);
 			path = Tetris;
 			sourceTree = "<group>";
@@ -155,6 +158,14 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		F4DE1FED213086760062E0C2 /* DifferenceKit */ = {
+			isa = PBXGroup;
+			children = (
+				F4DE1FEE2130869E0062E0C2 /* DifferenceKitTetrisAdapter.swift */,
+			);
+			path = DifferenceKit;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -166,6 +177,7 @@
 				F4CF0E4B21307ADC0017E405 /* Sources */,
 				F4CF0E4C21307ADC0017E405 /* Frameworks */,
 				F4CF0E4D21307ADC0017E405 /* Resources */,
+				07BFD236A9E6E2B588AE7BD7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -214,15 +226,33 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F443969921308E4100EBA362 /* Tetris.storyboard in Resources */,
 				F4CF0E5D21307ADE0017E405 /* LaunchScreen.storyboard in Resources */,
 				F4CF0E5A21307ADD0017E405 /* Assets.xcassets in Resources */,
-				F4CF0E6921307C160017E405 /* Tetris.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		07BFD236A9E6E2B588AE7BD7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TetrisDiffingCompetition/Pods-TetrisDiffingCompetition-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DifferenceKit/DifferenceKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DifferenceKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TetrisDiffingCompetition/Pods-TetrisDiffingCompetition-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		54A304F732451C77F82CBC1B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -252,13 +282,14 @@
 				F4DE1FE321307DFB0062E0C2 /* TetrisAdapter.swift in Sources */,
 				F4CF0E5321307ADC0017E405 /* AppDelegate.swift in Sources */,
 				F4DE1FEC213082D60062E0C2 /* RootViewController.swift in Sources */,
+				F4DE1FEF2130869E0062E0C2 /* DifferenceKitTetrisAdapter.swift in Sources */,
 				F4DE1FEA2130825C0062E0C2 /* UIViewController+common.swift in Sources */,
 				F4CF0E6821307C160017E405 /* Tetris.swift in Sources */,
+				F443969621308CA200EBA362 /* TetrisViewController.swift in Sources */,
 				F4DE1FE82130814E0062E0C2 /* Common.swift in Sources */,
 				F4CF0E6E21307C3A0017E405 /* DataSource.swift in Sources */,
 				F4DE1FE521307E5D0062E0C2 /* SKRBatchUpdatesTetrisAdapter.swift in Sources */,
 				F4CF0E6F21307C3A0017E405 /* BatchChanges.swift in Sources */,
-				F4CF0E6A21307C160017E405 /* TetrisViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

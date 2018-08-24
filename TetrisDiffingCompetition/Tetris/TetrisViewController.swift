@@ -5,53 +5,59 @@
 import UIKit
 
 class TetrisViewController: UIViewController, UICollectionViewDataSource {
+    @IBOutlet private var collectionView: UICollectionView!
     
-    @IBOutlet var collectionView: UICollectionView!
-    
-    let dataSource = DataSource<TetrisRow, TetrisBlock>()
-    var game = TetrisGame()
-    var timer: Timer?
+    private var adapter: TetrisAdapter!
+    private var game = TetrisGame()
+    private var timer: Timer?
     
     // MARK: Life cycle
+    
+    static func instantiate(with adapter: TetrisAdapter) -> TetrisViewController {
+        let viewController = UIStoryboard(name: "Tetris", bundle: nil).instantiateInitialViewController() as! TetrisViewController
+        viewController.adapter = adapter
+        viewController.navigationItem.title = adapter.name
+        return viewController
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        dataSource.sections = game.currentBoard.dataSource
+        adapter.setBoard(game.currentBoard)
         collectionView.dataSource = self
     }
 
     // MARK: Actions
     
-    @IBAction func play(_ sender: Any) {
+    @IBAction private func play(_ sender: Any) {
         startGame()
     }
     
-    @IBAction func moveLeft(_ sender: UIBarButtonItem) {
+    @IBAction private func moveLeft(_ sender: UIBarButtonItem) {
         if game.left() {
             update()
         }
     }
     
-    @IBAction func moveRight(_ sender: UIBarButtonItem) {
+    @IBAction private func moveRight(_ sender: UIBarButtonItem) {
         if game.right() {
             update()
         }
     }
     
-    @IBAction func rotateLeft(_ sender: UIBarButtonItem) {
+    @IBAction private func rotateLeft(_ sender: UIBarButtonItem) {
         if game.rotateLeft() {
             update()
         }
     }
     
-    @IBAction func rotateRight(_ sender: UIBarButtonItem) {
+    @IBAction private func rotateRight(_ sender: UIBarButtonItem) {
         if game.rotateRight() {
             update()
         }
     }
     
-    @IBAction func drop(_ sender: UIBarButtonItem) {
+    @IBAction private func drop(_ sender: UIBarButtonItem) {
         if game.drop() {
             stopTimer()
             update(completion: { _ in
@@ -62,13 +68,13 @@ class TetrisViewController: UIViewController, UICollectionViewDataSource {
     
     // Game logic
     
-    func startGame() {
+    private func startGame() {
         game = TetrisGame()
         spawnOrGameOver()
         startTimer()
     }
     
-    func tick() {
+    private func tick() {
         if game.down() {
             update()
         } else {
@@ -80,7 +86,7 @@ class TetrisViewController: UIViewController, UICollectionViewDataSource {
         }
     }
 
-    func spawnOrGameOver() {
+    private func spawnOrGameOver() {
         if game.spawn() {
             update()
         } else {
@@ -88,15 +94,15 @@ class TetrisViewController: UIViewController, UICollectionViewDataSource {
         }
     }
     
-    func gameOver() {
+    private func gameOver() {
         stopTimer()
     }
     
-    func update(completion: ((Bool) -> Swift.Void)? = nil) {
-        dataSource.animate(to: game.currentBoard.dataSource, in: collectionView, completion: completion)
+    private func update(completion: ((Bool) -> Swift.Void)? = nil) {
+        adapter.animateBoard(to: game.currentBoard, in: collectionView, completion: completion)
     }
 
-    func startTimer() {
+    private func startTimer() {
         if let timer = self.timer {
             timer.invalidate()
         }
@@ -107,7 +113,7 @@ class TetrisViewController: UIViewController, UICollectionViewDataSource {
         self.timer = timer
     }
     
-    func stopTimer() {
+    private func stopTimer() {
         timer?.invalidate()
         timer = nil
     }
@@ -115,15 +121,15 @@ class TetrisViewController: UIViewController, UICollectionViewDataSource {
     // MARK: - UICollectionViewDataSource
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return dataSource.numberOfSections()
+        return adapter.numberOfSections()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dataSource.numberOfRows(in: section)
+        return adapter.numberOfRows(in: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let block = dataSource.itemForRow(at: indexPath)
+        let block = adapter.tetrisBlock(for: indexPath)
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         cell.configure(with: block)
         
@@ -140,11 +146,5 @@ extension UICollectionViewCell {
         case .occupied(let color):
             backgroundColor = color
         }
-    }
-}
-
-extension TetrisBoard {
-    var dataSource: [(TetrisRow, [TetrisBlock])] {
-        return rows.map { ($0, $0.blocks) }
     }
 }

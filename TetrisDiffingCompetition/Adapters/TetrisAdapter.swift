@@ -6,5 +6,11 @@ import UIKit
 
 protocol TetrisAdapter {
     var name: String { get }
-    func makeGameViewController() -> UIViewController
+    
+    func setBoard(_ tetrisBoard: TetrisBoard)
+    func animateBoard(to board: TetrisBoard, in collectionView: UICollectionView, completion: ((Bool) -> Void)?)
+
+    func numberOfSections() -> Int
+    func numberOfRows(in section: Int) -> Int
+    func tetrisBlock(for indexPath: IndexPath) -> TetrisBlock
 }
