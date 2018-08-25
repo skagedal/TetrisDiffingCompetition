@@ -6,6 +6,9 @@ import UIKit
 
 class SKRBatchUpdatesTetrisAdapter: TetrisAdapter {
     let name = "SKRBatchUpdates"
+    let comment = """
+        My diffing engine. The original Collection View Tetris diffing engine.
+        """
     var collectionView: UICollectionView!
 
     private let dataSource = DataSource<TetrisRow, TetrisBlock>()

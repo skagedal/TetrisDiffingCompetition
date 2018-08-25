@@ -7,7 +7,9 @@ import Dwifft
 
 class DwifftTetrisAdapter: TetrisAdapter {
     let name = "Dwifft"
-    
+    let comment = """
+        Works, but doesn't seem to be doing moves, so the block pieces jump between sections.
+        """
     var collectionView: UICollectionView! {
         didSet {
             diffCalculator = CollectionViewDiffCalculator(collectionView: collectionView)

@@ -7,6 +7,10 @@ import Differ
 
 class DifferTetrisAdapter: TetrisAdapter {
     let name = "Differ"
+    let comment = """
+        I didn't get this one to work at all.  I think I'm calling it correctly, \
+        but nothing shows. 
+        """
     var collectionView: UICollectionView!
 
     var board = TetrisBoard(rows: [])

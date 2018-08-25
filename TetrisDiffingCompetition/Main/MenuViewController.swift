@@ -25,22 +25,26 @@ class MenuViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(SubtitleCell.self, forCellReuseIdentifier: reuseIdentifier)
     }
 
     // MARK: - Table view data source
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return adapters.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-        cell.textLabel?.text = adapter(for: indexPath).name
+        let a = adapter(for: indexPath)
+        cell.textLabel?.text = a.name
         cell.accessoryType = .disclosureIndicator
+        cell.detailTextLabel?.numberOfLines = 0
+        cell.detailTextLabel?.textColor = UIColor(white: 0, alpha: 0.8)
+        cell.detailTextLabel?.text = a.comment
         return cell
     }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.menuViewController(self, didSelect: adapter(for: indexPath))
     }
@@ -52,4 +56,12 @@ class MenuViewController: UITableViewController {
 
 protocol MenuViewControllerDelegate: AnyObject {
     func menuViewController(_ menuViewController: MenuViewController, didSelect adapter: TetrisAdapter)
+}
+
+final class SubtitleCell: UITableViewCell {
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+    }
+    
+    required init?(coder aDecoder: NSCoder) { unsupportedInitializer() }
 }

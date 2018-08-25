@@ -6,6 +6,8 @@ import UIKit
 
 protocol TetrisAdapter {
     var name: String { get }
+    var comment: String { get }
+    
     var collectionView: UICollectionView! { get set }
     
     func setBoard(_ tetrisBoard: TetrisBoard)

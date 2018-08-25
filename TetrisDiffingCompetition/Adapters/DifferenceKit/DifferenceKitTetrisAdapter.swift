@@ -7,6 +7,9 @@ import DifferenceKit
 
 class DifferenceKitTetrisAdapter: TetrisAdapter {
     let name = "DifferenceKit"
+    let comment = """
+        Works super-nice!
+        """
     var collectionView: UICollectionView!
 
     private var sections: [ArraySection<TetrisRow, TetrisBlock>] = []
