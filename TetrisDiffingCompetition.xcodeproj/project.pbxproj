@@ -10,6 +10,8 @@
 		5E6B85B1C3D8CBAC0D09AF5B /* Pods_TetrisDiffingCompetition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6004EF95B454C045EE8C1D6A /* Pods_TetrisDiffingCompetition.framework */; };
 		F443969621308CA200EBA362 /* TetrisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F443969421308CA200EBA362 /* TetrisViewController.swift */; };
 		F443969921308E4100EBA362 /* Tetris.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F443969821308E4000EBA362 /* Tetris.storyboard */; };
+		F443969C2130B7F200EBA362 /* DifferTetrisAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F443969B2130B7F200EBA362 /* DifferTetrisAdapter.swift */; };
+		F443969F2130BC0600EBA362 /* DwifftTetrisAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F443969E2130BC0600EBA362 /* DwifftTetrisAdapter.swift */; };
 		F4CF0E5321307ADC0017E405 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CF0E5221307ADC0017E405 /* AppDelegate.swift */; };
 		F4CF0E5521307ADC0017E405 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CF0E5421307ADC0017E405 /* MenuViewController.swift */; };
 		F4CF0E5A21307ADD0017E405 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4CF0E5921307ADD0017E405 /* Assets.xcassets */; };
@@ -31,6 +33,8 @@
 		D16FA5BA7E6E071DBFB3AA06 /* Pods-TetrisDiffingCompetition.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TetrisDiffingCompetition.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TetrisDiffingCompetition/Pods-TetrisDiffingCompetition.debug.xcconfig"; sourceTree = "<group>"; };
 		F443969421308CA200EBA362 /* TetrisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TetrisViewController.swift; sourceTree = "<group>"; };
 		F443969821308E4000EBA362 /* Tetris.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tetris.storyboard; sourceTree = "<group>"; };
+		F443969B2130B7F200EBA362 /* DifferTetrisAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifferTetrisAdapter.swift; sourceTree = "<group>"; };
+		F443969E2130BC0600EBA362 /* DwifftTetrisAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DwifftTetrisAdapter.swift; sourceTree = "<group>"; };
 		F4CF0E4F21307ADC0017E405 /* TetrisDiffingCompetition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TetrisDiffingCompetition.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4CF0E5221307ADC0017E405 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4CF0E5421307ADC0017E405 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +81,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F443969A2130B7D600EBA362 /* Differ */ = {
+			isa = PBXGroup;
+			children = (
+				F443969B2130B7F200EBA362 /* DifferTetrisAdapter.swift */,
+			);
+			path = Differ;
+			sourceTree = "<group>";
+		};
+		F443969D2130BBED00EBA362 /* Dwifft */ = {
+			isa = PBXGroup;
+			children = (
+				F443969E2130BC0600EBA362 /* DwifftTetrisAdapter.swift */,
+			);
+			path = Dwifft;
+			sourceTree = "<group>";
+		};
 		F4CF0E4621307ADC0017E405 = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +139,8 @@
 		F4DE1FDE21307D6C0062E0C2 /* Adapters */ = {
 			isa = PBXGroup;
 			children = (
+				F443969D2130BBED00EBA362 /* Dwifft */,
+				F443969A2130B7D600EBA362 /* Differ */,
 				F4CF0E6B21307C280017E405 /* SKRBatchUpdates */,
 				F4DE1FED213086760062E0C2 /* DifferenceKit */,
 				F4DE1FE221307DFB0062E0C2 /* TetrisAdapter.swift */,
@@ -242,11 +264,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-TetrisDiffingCompetition/Pods-TetrisDiffingCompetition-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Differ/Differ.framework",
 				"${BUILT_PRODUCTS_DIR}/DifferenceKit/DifferenceKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Dwifft/Dwifft.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differ.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DifferenceKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Dwifft.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -279,10 +305,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4CF0E5521307ADC0017E405 /* MenuViewController.swift in Sources */,
+				F443969C2130B7F200EBA362 /* DifferTetrisAdapter.swift in Sources */,
 				F4DE1FE321307DFB0062E0C2 /* TetrisAdapter.swift in Sources */,
 				F4CF0E5321307ADC0017E405 /* AppDelegate.swift in Sources */,
 				F4DE1FEC213082D60062E0C2 /* RootViewController.swift in Sources */,
 				F4DE1FEF2130869E0062E0C2 /* DifferenceKitTetrisAdapter.swift in Sources */,
+				F443969F2130BC0600EBA362 /* DwifftTetrisAdapter.swift in Sources */,
 				F4DE1FEA2130825C0062E0C2 /* UIViewController+common.swift in Sources */,
 				F4CF0E6821307C160017E405 /* Tetris.swift in Sources */,
 				F443969621308CA200EBA362 /* TetrisViewController.swift in Sources */,

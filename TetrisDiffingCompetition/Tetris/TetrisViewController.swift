@@ -23,6 +23,7 @@ class TetrisViewController: UIViewController, UICollectionViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        adapter.collectionView = collectionView
         adapter.setBoard(game.currentBoard)
         collectionView.dataSource = self
     }

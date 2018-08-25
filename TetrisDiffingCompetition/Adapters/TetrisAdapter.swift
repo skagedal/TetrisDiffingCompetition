@@ -6,6 +6,7 @@ import UIKit
 
 protocol TetrisAdapter {
     var name: String { get }
+    var collectionView: UICollectionView? { get set }
     
     func setBoard(_ tetrisBoard: TetrisBoard)
     func animateBoard(to board: TetrisBoard, in collectionView: UICollectionView, completion: ((Bool) -> Void)?)

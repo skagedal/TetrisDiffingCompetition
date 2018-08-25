@@ -7,7 +7,9 @@ import UIKit
 class RootViewController: UIViewController {
     private lazy var menu = MenuViewController(adapters: [
         SKRBatchUpdatesTetrisAdapter(),
-        DifferenceKitTetrisAdapter()
+        DifferenceKitTetrisAdapter(),
+        DwifftTetrisAdapter(),
+        DifferTetrisAdapter()
     ])
     
     private lazy var navigation: UINavigationController = {

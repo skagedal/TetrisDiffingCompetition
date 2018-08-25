@@ -6,6 +6,7 @@ import UIKit
 
 class SKRBatchUpdatesTetrisAdapter: TetrisAdapter {
     let name = "SKRBatchUpdates"
+    var collectionView: UICollectionView?
 
     private let dataSource = DataSource<TetrisRow, TetrisBlock>()
 
