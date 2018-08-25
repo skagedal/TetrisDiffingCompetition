@@ -7,14 +7,14 @@ import Differ
 
 class DifferTetrisAdapter: TetrisAdapter {
     let name = "Differ"
-    var collectionView: UICollectionView?
+    var collectionView: UICollectionView!
 
     var board = TetrisBoard(rows: [])
     func setBoard(_ tetrisBoard: TetrisBoard) {
         self.board = tetrisBoard
     }
     
-    func animateBoard(to board: TetrisBoard, in collectionView: UICollectionView, completion: ((Bool) -> Void)?) {
+    func animateBoard(to board: TetrisBoard, completion: ((Bool) -> Void)?) {
         collectionView.animateItemAndSectionChanges(oldData: self.board.rows,
                                                     newData: board.rows,
                                                     completion: completion)

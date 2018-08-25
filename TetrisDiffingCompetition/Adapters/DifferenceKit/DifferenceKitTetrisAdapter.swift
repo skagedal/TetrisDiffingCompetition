@@ -7,7 +7,7 @@ import DifferenceKit
 
 class DifferenceKitTetrisAdapter: TetrisAdapter {
     let name = "DifferenceKit"
-    var collectionView: UICollectionView?
+    var collectionView: UICollectionView!
 
     private var sections: [ArraySection<TetrisRow, TetrisBlock>] = []
     
@@ -15,7 +15,7 @@ class DifferenceKitTetrisAdapter: TetrisAdapter {
         sections = tetrisBoard.sections
     }
     
-    func animateBoard(to board: TetrisBoard, in collectionView: UICollectionView, completion: ((Bool) -> Void)?) {
+    func animateBoard(to board: TetrisBoard, completion: ((Bool) -> Void)?) {
         let changes = StagedChangeset(source: sections, target: board.sections)
         collectionView.reload(using: changes, setData: { newSections in
             self.sections = newSections

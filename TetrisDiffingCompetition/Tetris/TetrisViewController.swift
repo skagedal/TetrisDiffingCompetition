@@ -100,7 +100,7 @@ class TetrisViewController: UIViewController, UICollectionViewDataSource {
     }
     
     private func update(completion: ((Bool) -> Swift.Void)? = nil) {
-        adapter.animateBoard(to: game.currentBoard, in: collectionView, completion: completion)
+        adapter.animateBoard(to: game.currentBoard, completion: completion)
     }
 
     private func startTimer() {

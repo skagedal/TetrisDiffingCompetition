@@ -8,7 +8,7 @@ import Dwifft
 class DwifftTetrisAdapter: TetrisAdapter {
     let name = "Dwifft"
     
-    var collectionView: UICollectionView? {
+    var collectionView: UICollectionView! {
         didSet {
             diffCalculator = CollectionViewDiffCalculator(collectionView: collectionView)
         }
@@ -20,7 +20,7 @@ class DwifftTetrisAdapter: TetrisAdapter {
         // Setting diffCalculator?.sectionedValues = SectionedValues(tetrisBoard.dataSource) here crashes.
     }
     
-    func animateBoard(to board: TetrisBoard, in collectionView: UICollectionView, completion: ((Bool) -> Void)?) {
+    func animateBoard(to board: TetrisBoard, completion: ((Bool) -> Void)?) {
         diffCalculator.sectionedValues = SectionedValues(board.dataSource)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
             completion?(true)

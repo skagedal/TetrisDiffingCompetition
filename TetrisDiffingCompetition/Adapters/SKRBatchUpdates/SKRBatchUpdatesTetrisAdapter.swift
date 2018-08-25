@@ -6,7 +6,7 @@ import UIKit
 
 class SKRBatchUpdatesTetrisAdapter: TetrisAdapter {
     let name = "SKRBatchUpdates"
-    var collectionView: UICollectionView?
+    var collectionView: UICollectionView!
 
     private let dataSource = DataSource<TetrisRow, TetrisBlock>()
 
@@ -14,7 +14,7 @@ class SKRBatchUpdatesTetrisAdapter: TetrisAdapter {
         dataSource.sections = tetrisBoard.dataSource
     }
 
-    func animateBoard(to board: TetrisBoard, in collectionView: UICollectionView, completion: ((Bool) -> Void)?)  {
+    func animateBoard(to board: TetrisBoard, completion: ((Bool) -> Void)?)  {
         dataSource.animate(to: board.dataSource, in: collectionView, completion: completion)
     }
 
