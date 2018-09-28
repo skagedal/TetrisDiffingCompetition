@@ -1,4 +1,6 @@
-<h1 align="center">DifferenceKit</h1>
+<p align="center">
+<img src="https://raw.githubusercontent.com/ra1028/DifferenceKit/master/assets/logo.png" width="500">
+</p>
 <H4 align="center">
 A fast and flexible O(n) difference algorithm framework for Swift collection.</br>
 The algorithm is optimized based on the Paul Heckel's algorithm.
@@ -18,7 +20,7 @@ The algorithm is optimized based on the Paul Heckel's algorithm.
 ---
 
 ## Features
-✅ Automate to calculate commands for batch-updates of UITableView and UICollectionView  
+✅ Automate to calculate operations for batch-updates of UITableView, UICollectionView, NSTableView and NSCollectionView  
 
 ✅ **O(n)** difference algorithm optimized for performance in Swift  
 
@@ -26,7 +28,7 @@ The algorithm is optimized based on the Paul Heckel's algorithm.
 
 ✅ Supports calculating differences with best effort even if elements or section contains duplicates  
 
-✅ Supports **all commands** for animating UI batch-updates including section reloads  
+✅ Supports **all operations** for animated UI batch-updates including section reloads  
 
 ---
 
@@ -45,8 +47,8 @@ See also his paper ["A technique for isolating differences between files"](https
 [RxDataSources](https://github.com/RxSwiftCommunity/RxDataSources) and [IGListKit](https://github.com/Instagram/IGListKit) are also implemented based on his algorithm.  
 This allows all types of differences to be computed in linear time **O(n)**.  
 
-However, in `performBatchUpdates` of UITableView and UICollectionView, there are combinations of commands that cause crash when applied simultaneously.  
-To solve this problem, DifferenceKit takes an approach of split the set of differences at the minimal stages that can be perform batch-updates with no crashes.
+However, in `performBatchUpdates` of `UITableView` and `UICollectionView`, there are combinations of operations that cause crash when applied simultaneously.  
+To solve this problem, `DifferenceKit` takes an approach of split the set of differences at the minimal stages that can be perform batch-updates with no crashes.
 
 Implementation is [here](https://github.com/ra1028/DifferenceKit/blob/master/Sources/Algorithm.swift).
 
@@ -85,10 +87,24 @@ In the case of definition above, `id` uniquely identifies the element and get to
 
 There are default implementations of `Differentiable` for the types that conformed to `Equatable` or `Hashable`：
 ```swift
+public extension Differentiable where Self: Equatable {
+    func isContentEqual(to source: Self) -> Bool {
+        return self == source
+    }
+}
+
+public extension Differentiable where Self: Hashable {
+    var differenceIdentifier: Self {
+        return self
+    }
+}
+```
+So, you can simply:
+```swift
 extension String: Differentiable {}
 ```
 
-You can calculate the differences by creating `StagedChangeset` from two collections of elements conforming to `Differentiable`:
+Calculates the differences by creating `StagedChangeset` from two collections of elements conforming to `Differentiable`:
 ```swift
 let source = [
     User(id: 0, name: "Vincent"),
@@ -132,8 +148,10 @@ let target: [ArraySection<Model, String>] = [
 let changeset = StagedChangeset(source: source, target: target)
 ```
 
-You can incremental updates UITableView and UICollectionView using the created `StagedChangeset`.  
-**Don't forget** to update the data referenced by the dataSource in `setData` closure, as the differences is applied in stages:
+You can perform incremental updates on `UITableView` and `UICollectionView` using the created `StagedChangeset`.  
+
+⚠️ **Don't forget** to **synchronously** update the data referenced by the data-source, with the data passed in the `setData` closure. The differences are applied in stages, and failing to do so is bound to create a crash:
+
 ```swift
 tableView.reload(using: changeset, with: .fade) { data in
     dataSource.data = data
@@ -141,7 +159,7 @@ tableView.reload(using: changeset, with: .fade) { data in
 ```
 
 Batch-updates using too large amount of differences may adversely affect to performance.  
-Returning `true` with `interrupt` closure then falls back to `reloadDate`:
+Returning `true` with `interrupt` closure then falls back to `reloadData`:
 ```swift
 collectionView.reload(using: changeset, interrupt: { $0.changeCount > 100 }) { data in
     dataSource.data = data
@@ -253,7 +271,7 @@ Use `Foundation.UUID` as an element.
 - Swift4.1+
 - iOS 9.0+
 - tvOS 9.0+
-- OS X 10.9+ (only algorithm)
+- OS X 10.9+
 - watchOS 2.0+ (only algorithm)
 
 ---
@@ -261,14 +279,6 @@ Use `Foundation.UUID` as an element.
 ## Installation
 
 ### [CocoaPods](https://cocoapods.org/)
-Add the following to your `Podfile`:
-```ruby
-use_frameworks!
-
-target 'TargetName' do
-  pod 'DifferenceKit'
-end
-```
 To use only algorithm without extensions for UI, add the following:
 ```ruby
 use_frameworks!
@@ -277,10 +287,32 @@ target 'TargetName' do
   pod 'DifferenceKit/Core'
 end
 ```
-And run
-```sh
-pod install
+
+#### iOS/tvOS
+To use DifferenceKit with UIKit extension, add the following to your `Podfile`:
+```ruby
+target 'TargetName' do
+  pod 'DifferenceKit'
+end
 ```
+or
+```ruby
+target 'TargetName' do
+  pod 'DifferenceKit/UIKitExtension'
+end
+```
+
+#### macOS
+To use DifferenceKit with AppKit extension, add the following to your `Podfile`:
+```ruby
+target 'TargetName' do
+  pod 'DifferenceKit/AppKitExtension'
+end
+```
+
+### watchOS
+There is no UI extension for watchOS.  
+You can use only the algorithm.  
 
 ### [Carthage](https://github.com/Carthage/Carthage)
 Add the following to your `Cartfile`:
