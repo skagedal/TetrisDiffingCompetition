@@ -2,13 +2,17 @@
 
 This is a comparison of diffing frameworks for UIKit table views and collection views.  I wrote a blog post called [Collection View Tetris][cwt], where I presented a fun hack: Tetris implemented using a quite ordinary Collection View and its default animation.  This requires that all possible animations are implemented – inserts, deletes and moves of items and sections, including moving items from one section to another. 
 
+After writing that, I got curious: how do existing diffing libs meet the task of being the diffing engine from Collection View Tetris? Let's have a little competition. 
+
 ## The (slightly ad hoc) rules
 
-There is a whole bunch of diffing frameworks available for iOS, but to be eligble for the Tetris Diffing Competition, they have to meet the following criteria:
+There is a whole bunch of diffing frameworks available for iOS, but to be eligble for the Tetris Diffing Competition, they have to meet the following:
 
 * There has to be a diffing API that handles both items and sections. 
 * There has to also be a method for running the whole animation – as you can read about in my blog post, supporting all of this is non-trivial and requires more than the diffing itself. 
-* I have to understand how to use it all in reasonable time.
+* I have to understand how to use it in reasonable time.
+
+Three of the libraries I found seemed to fit the criteria.
 
 ## The results
 
