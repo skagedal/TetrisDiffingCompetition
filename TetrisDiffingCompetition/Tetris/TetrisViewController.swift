@@ -110,7 +110,7 @@ class TetrisViewController: UIViewController, UICollectionViewDataSource {
         let timer = Timer(fire: Date(), interval: 0.5, repeats: true) {_ in
             self.tick()
         }
-        RunLoop.current.add(timer, forMode: .defaultRunLoopMode)
+        RunLoop.current.add(timer, forMode: .default)
         self.timer = timer
     }
     

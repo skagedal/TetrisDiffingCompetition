@@ -10,7 +10,7 @@ extension UIViewController {
     }
     
     func embed(_ childViewController: UIViewController, in embeddingView: UIView) {
-        addChildViewController(childViewController)
+        addChild(childViewController)
         
         let subview = childViewController.view!
         embeddingView.addSubview(subview)
@@ -22,7 +22,7 @@ extension UIViewController {
             subview.bottomAnchor.constraint(equalTo: embeddingView.bottomAnchor)
         ])
         
-        childViewController.didMove(toParentViewController: self)
+        childViewController.didMove(toParent: self)
     }
     
 }

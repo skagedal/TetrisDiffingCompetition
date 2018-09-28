@@ -43,7 +43,7 @@ public class DataSource<SectionType: Hashable, ItemType: Hashable> {
         return items[indexPath.item]
     }
     
-    public func animate(to sections: [(SectionType, [ItemType])], in tableView: UITableView, with animation: UITableViewRowAnimation) {
+    public func animate(to sections: [(SectionType, [ItemType])], in tableView: UITableView, with animation: UITableView.RowAnimation) {
         let (oldSections, oldItems) = unzip(self.sections)
         let (newSections, newItems) = unzip(sections)
 
@@ -89,7 +89,7 @@ public class DataSource<SectionType: Hashable, ItemType: Hashable> {
 // MARK: - UIKit Extensions
 
 extension UITableView {
-    func updateRows(for changes: BatchItemChanges, with animation: UITableViewRowAnimation) {
+    func updateRows(for changes: BatchItemChanges, with animation: UITableView.RowAnimation) {
         deleteRows(at: changes.itemsToDelete, with: animation)
         insertRows(at: changes.itemsToInsert, with: animation)
         for move in changes.itemMoves {
@@ -97,7 +97,7 @@ extension UITableView {
         }
     }
     
-    func updateSections(for changes: BatchSectionChanges, with animation: UITableViewRowAnimation) {
+    func updateSections(for changes: BatchSectionChanges, with animation: UITableView.RowAnimation) {
         deleteSections(changes.sectionsToDelete, with: animation)
         insertSections(changes.sectionsToInsert, with: animation)
         for move in changes.sectionMoves {
