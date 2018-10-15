@@ -177,9 +177,9 @@ private extension Int {
 
 /// Creates unique blocks and rows by giving them an identifier.
 class BlockFactory {
-    var identifiers = (0..<Int.max).makeIterator()
+    private static var identifiers = (0..<Int.max).makeIterator()
     func nextIdentifier() -> Int {
-        guard let identifier = identifiers.next() else {
+        guard let identifier = BlockFactory.identifiers.next() else {
             fatalError("You've played Tetris far too long.")
         }
         return identifier
