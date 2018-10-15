@@ -21,9 +21,9 @@ enum Tetromino {
     case S
     case T
     case Z
-    
-    static let all: [Tetromino] = [.I, .J, .L, .O, .S, .T, .Z]
 }
+
+extension Tetromino: CaseIterable {}
 
 extension Tetromino {
     var template: [[UIColor?]] {
@@ -237,7 +237,7 @@ class TetrisGame {
     }
 
     func spawn() -> Bool {
-        let tetromino = Tetromino.all.randomPick()
+        let tetromino = Tetromino.allCases.randomPick()
 
         currentShape = blockFactory.shape(from: tetromino.template)
         x = (tetrisColumns - tetromino.template.count) / 2
