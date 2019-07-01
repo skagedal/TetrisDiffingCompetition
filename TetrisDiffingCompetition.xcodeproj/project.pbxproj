@@ -222,6 +222,7 @@
 				TargetAttributes = {
 					F4CF0E4E21307ADC0017E405 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1100;
 					};
 				};
 			};
@@ -467,7 +468,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = tech.skagedal.TetrisDiffingCompetition;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -488,7 +489,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = tech.skagedal.TetrisDiffingCompetition;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
