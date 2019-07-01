@@ -2,11 +2,6 @@
 import UIKit
 
 public extension UITableView {
-    #if swift(>=4.2)
-    #else
-    typealias RowAnimation = UITableViewRowAnimation
-    #endif
-
     /// Applies multiple animated updates in stages using `StagedChangeset`.
     ///
     /// - Note: There are combination of changes that crash when applied simultaneously in `performBatchUpdates`.
@@ -28,12 +23,12 @@ public extension UITableView {
         ) {
         reload(
             using: stagedChangeset,
-            deleteSectionsAnimation: animation,
-            insertSectionsAnimation: animation,
-            reloadSectionsAnimation: animation,
-            deleteRowsAnimation: animation,
-            insertRowsAnimation: animation,
-            reloadRowsAnimation: animation,
+            deleteSectionsAnimation: animation(),
+            insertSectionsAnimation: animation(),
+            reloadSectionsAnimation: animation(),
+            deleteRowsAnimation: animation(),
+            insertRowsAnimation: animation(),
+            reloadRowsAnimation: animation(),
             interrupt: interrupt,
             setData: setData
         )
@@ -120,7 +115,8 @@ public extension UITableView {
     private func _performBatchUpdates(_ updates: () -> Void) {
         if #available(iOS 11.0, tvOS 11.0, *) {
             performBatchUpdates(updates)
-        } else {
+        }
+        else {
             beginUpdates()
             updates()
             endUpdates()

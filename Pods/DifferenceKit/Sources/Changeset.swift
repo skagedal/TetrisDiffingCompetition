@@ -26,23 +26,6 @@ public struct Changeset<Collection: Swift.Collection> {
     /// The pairs of source and target path of moved elements.
     public var elementMoved: [(source: ElementPath, target: ElementPath)]
 
-    /// The number of all changes.
-    public var changeCount: Int {
-        return sectionDeleted.count
-            + sectionInserted.count
-            + sectionUpdated.count
-            + sectionMoved.count
-            + elementDeleted.count
-            + elementInserted.count
-            + elementUpdated.count
-            + elementMoved.count
-    }
-
-    /// A Boolean value indicating whether has changes.
-    public var hasChanges: Bool {
-        return changeCount > 0
-    }
-
     /// Creates a new `Changeset`.
     ///
     /// - Parameters:
@@ -55,6 +38,7 @@ public struct Changeset<Collection: Swift.Collection> {
     ///   - elementInserted: The paths of inserted elements.
     ///   - elementUpdated: The paths of updated elements.
     ///   - elementMoved: The pairs of source and target path of moved elements.
+    @inlinable
     public init(
         data: Collection,
         sectionDeleted: [Int] = [],
@@ -78,6 +62,50 @@ public struct Changeset<Collection: Swift.Collection> {
     }
 }
 
+public extension Changeset {
+    /// The number of section changes.
+    @inlinable
+    var sectionChangeCount: Int {
+        return sectionDeleted.count
+            + sectionInserted.count
+            + sectionUpdated.count
+            + sectionMoved.count
+    }
+
+    /// The number of element changes.
+    @inlinable
+    var elementChangeCount: Int {
+        return elementDeleted.count
+            + elementInserted.count
+            + elementUpdated.count
+            + elementMoved.count
+    }
+
+    /// The number of all changes.
+    @inlinable
+    var changeCount: Int {
+        return sectionChangeCount + elementChangeCount
+    }
+
+    /// A Boolean value indicating whether has section changes.
+    @inlinable
+    var hasSectionChanges: Bool {
+        return sectionChangeCount > 0
+    }
+
+    /// A Boolean value indicating whether has element changes.
+    @inlinable
+    var hasElementChanges: Bool {
+        return elementChangeCount > 0
+    }
+
+    /// A Boolean value indicating whether has changes.
+    @inlinable
+    var hasChanges: Bool {
+        return changeCount > 0
+    }
+}
+
 extension Changeset: Equatable where Collection: Equatable {
     public static func == (lhs: Changeset, rhs: Changeset) -> Bool {
         return lhs.data == rhs.data
@@ -95,7 +123,11 @@ extension Changeset: Equatable where Collection: Equatable {
 extension Changeset: CustomDebugStringConvertible {
     public var debugDescription: String {
         guard !data.isEmpty || hasChanges else {
-            return "Changeset(data: [])"
+            return """
+            Changeset(
+                data: []
+            )"
+            """
         }
 
         var description = """
