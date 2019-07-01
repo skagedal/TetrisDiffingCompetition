@@ -237,7 +237,7 @@ class TetrisGame {
     }
 
     func spawn() -> Bool {
-        let tetromino = Tetromino.allCases.randomPick()
+        let tetromino = Tetromino.allCases.randomElement()!
 
         currentShape = blockFactory.shape(from: tetromino.template)
         x = (tetrisColumns - tetromino.template.count) / 2
@@ -304,12 +304,5 @@ class TetrisGame {
             return true
         }
         return false
-    }
-}
-
-private extension Array {
-    func randomPick() -> Element {
-        let index = Int(arc4random_uniform(UInt32(count)))
-        return self[index]
     }
 }
