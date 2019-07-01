@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		5E6B85B1C3D8CBAC0D09AF5B /* Pods_TetrisDiffingCompetition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6004EF95B454C045EE8C1D6A /* Pods_TetrisDiffingCompetition.framework */; };
+		F43EE7D422CA886700DF238F /* UICollectionViewDiffableDataSourceTetrisAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43EE7D322CA886700DF238F /* UICollectionViewDiffableDataSourceTetrisAdapter.swift */; };
 		F443969621308CA200EBA362 /* TetrisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F443969421308CA200EBA362 /* TetrisViewController.swift */; };
 		F443969921308E4100EBA362 /* Tetris.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F443969821308E4000EBA362 /* Tetris.storyboard */; };
 		F443969C2130B7F200EBA362 /* DifferTetrisAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F443969B2130B7F200EBA362 /* DifferTetrisAdapter.swift */; };
@@ -31,6 +32,7 @@
 		6004EF95B454C045EE8C1D6A /* Pods_TetrisDiffingCompetition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TetrisDiffingCompetition.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF215A6B6807AE060E3DF3C3 /* Pods-TetrisDiffingCompetition.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TetrisDiffingCompetition.release.xcconfig"; path = "Pods/Target Support Files/Pods-TetrisDiffingCompetition/Pods-TetrisDiffingCompetition.release.xcconfig"; sourceTree = "<group>"; };
 		D16FA5BA7E6E071DBFB3AA06 /* Pods-TetrisDiffingCompetition.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TetrisDiffingCompetition.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TetrisDiffingCompetition/Pods-TetrisDiffingCompetition.debug.xcconfig"; sourceTree = "<group>"; };
+		F43EE7D322CA886700DF238F /* UICollectionViewDiffableDataSourceTetrisAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewDiffableDataSourceTetrisAdapter.swift; sourceTree = "<group>"; };
 		F443969421308CA200EBA362 /* TetrisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TetrisViewController.swift; sourceTree = "<group>"; };
 		F443969821308E4000EBA362 /* Tetris.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tetris.storyboard; sourceTree = "<group>"; };
 		F443969B2130B7F200EBA362 /* DifferTetrisAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifferTetrisAdapter.swift; sourceTree = "<group>"; };
@@ -79,6 +81,14 @@
 				6004EF95B454C045EE8C1D6A /* Pods_TetrisDiffingCompetition.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F43EE7D222CA883400DF238F /* UICollectionViewDiffableDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				F43EE7D322CA886700DF238F /* UICollectionViewDiffableDataSourceTetrisAdapter.swift */,
+			);
+			path = UICollectionViewDiffableDataSource;
 			sourceTree = "<group>";
 		};
 		F443969A2130B7D600EBA362 /* Differ */ = {
@@ -139,6 +149,7 @@
 		F4DE1FDE21307D6C0062E0C2 /* Adapters */ = {
 			isa = PBXGroup;
 			children = (
+				F43EE7D222CA883400DF238F /* UICollectionViewDiffableDataSource */,
 				F443969D2130BBED00EBA362 /* Dwifft */,
 				F443969A2130B7D600EBA362 /* Differ */,
 				F4CF0E6B21307C280017E405 /* SKRBatchUpdates */,
@@ -309,6 +320,7 @@
 				F443969F2130BC0600EBA362 /* DwifftTetrisAdapter.swift in Sources */,
 				F4DE1FEA2130825C0062E0C2 /* UIViewController+common.swift in Sources */,
 				F4CF0E6821307C160017E405 /* Tetris.swift in Sources */,
+				F43EE7D422CA886700DF238F /* UICollectionViewDiffableDataSourceTetrisAdapter.swift in Sources */,
 				F443969621308CA200EBA362 /* TetrisViewController.swift in Sources */,
 				F4DE1FE82130814E0062E0C2 /* Common.swift in Sources */,
 				F4CF0E6E21307C3A0017E405 /* DataSource.swift in Sources */,

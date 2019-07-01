@@ -8,12 +8,8 @@ protocol TetrisAdapter {
     var name: String { get }
     var comment: String { get }
     
-    var collectionView: UICollectionView! { get set }
+    func configure(collectionView: UICollectionView, cellProvider: @escaping (UICollectionView, IndexPath) -> UICollectionViewCell)
     
     func setBoard(_ tetrisBoard: TetrisBoard)
     func animateBoard(to board: TetrisBoard, completion: ((Bool) -> Void)?)
-
-    func numberOfSections() -> Int
-    func numberOfRows(in section: Int) -> Int
-    func tetrisBlock(for indexPath: IndexPath) -> TetrisBlock
 }

@@ -4,13 +4,27 @@
 
 import UIKit
 
+private func adapters() -> [TetrisAdapter] {
+    if #available(iOS 13, *) {
+        return [
+            SKRBatchUpdatesTetrisAdapter(),
+            UICollectionViewDiffableDataSourceTetrisAdapter(),
+            DifferenceKitTetrisAdapter(),
+            DwifftTetrisAdapter(),
+            DifferTetrisAdapter()
+        ]
+    } else {
+        return [
+            SKRBatchUpdatesTetrisAdapter(),
+            DifferenceKitTetrisAdapter(),
+            DwifftTetrisAdapter(),
+            DifferTetrisAdapter()
+        ]
+    }
+}
+
 class RootViewController: UIViewController {
-    private lazy var menu = MenuViewController(adapters: [
-        SKRBatchUpdatesTetrisAdapter(),
-        DifferenceKitTetrisAdapter(),
-        DwifftTetrisAdapter(),
-        DifferTetrisAdapter()
-    ])
+    private lazy var menu = MenuViewController(adapters: adapters())
     
     private lazy var navigation: UINavigationController = {
         let navigation = UINavigationController(rootViewController: menu)

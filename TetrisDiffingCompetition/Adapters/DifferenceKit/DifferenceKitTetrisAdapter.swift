@@ -5,12 +5,20 @@
 import UIKit
 import DifferenceKit
 
-class DifferenceKitTetrisAdapter: TetrisAdapter {
+class DifferenceKitTetrisAdapter: NSObject, TetrisAdapter, UICollectionViewDataSource {
     let name = "DifferenceKit"
     let comment = """
         Works super-nice!
         """
-    var collectionView: UICollectionView!
+
+    func configure(collectionView: UICollectionView, cellProvider: @escaping (UICollectionView, IndexPath) -> UICollectionViewCell) {
+        self.collectionView = collectionView
+        collectionView.dataSource = self
+        self.cellProvider = cellProvider
+    }
+    
+    private var collectionView: UICollectionView!
+    private var cellProvider: ((UICollectionView, IndexPath) -> UICollectionViewCell)!
 
     private var sections: [ArraySection<TetrisRow, TetrisBlock>] = []
     
@@ -29,16 +37,21 @@ class DifferenceKitTetrisAdapter: TetrisAdapter {
         }
     }
 
-    func numberOfSections() -> Int {
+    // MARK: UICollectionViewDataSource
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return sections.count
     }
     
-    func numberOfRows(in section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return sections[section].elements.count
     }
     
-    func tetrisBlock(for indexPath: IndexPath) -> TetrisBlock {
-        return sections[indexPath.section].elements[indexPath.row]
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = cellProvider(collectionView, indexPath)
+        let block = sections[indexPath.section].elements[indexPath.row]
+        cell.configure(with: block)
+        return cell
     }
 }
 

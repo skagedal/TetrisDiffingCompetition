@@ -5,13 +5,21 @@
 import UIKit
 import Differ
 
-class DifferTetrisAdapter: TetrisAdapter {
+class DifferTetrisAdapter: NSObject, TetrisAdapter, UICollectionViewDataSource {
     let name = "Differ"
     let comment = """
         I didn't get this one to work at all.  I think I'm calling it correctly, \
         but nothing shows. 
         """
-    var collectionView: UICollectionView!
+    
+    func configure(collectionView: UICollectionView, cellProvider: @escaping (UICollectionView, IndexPath) -> UICollectionViewCell) {
+        self.collectionView = collectionView
+        collectionView.dataSource = self
+        self.cellProvider = cellProvider
+    }
+    
+    private var collectionView: UICollectionView!
+    private var cellProvider: ((UICollectionView, IndexPath) -> UICollectionViewCell)!
 
     var board = TetrisBoard(rows: [])
     func setBoard(_ tetrisBoard: TetrisBoard) {
@@ -24,16 +32,21 @@ class DifferTetrisAdapter: TetrisAdapter {
                                                     completion: completion)
     }
     
-    func numberOfSections() -> Int {
+    // MARK: UICollectionViewDataSource
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return board.rows.count
     }
-    
-    func numberOfRows(in section: Int) -> Int {
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return board.rows[section].blocks.count
     }
-    
-    func tetrisBlock(for indexPath: IndexPath) -> TetrisBlock {
-        return board.rows[indexPath.section].blocks[indexPath.row]
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = cellProvider(collectionView, indexPath)
+        let block = board.rows[indexPath.section].blocks[indexPath.row]
+        cell.configure(with: block)
+        return cell
     }
 }
 

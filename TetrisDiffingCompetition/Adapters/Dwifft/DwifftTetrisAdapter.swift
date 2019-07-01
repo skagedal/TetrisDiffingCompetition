@@ -5,17 +5,21 @@
 import UIKit
 import Dwifft
 
-class DwifftTetrisAdapter: TetrisAdapter {
+class DwifftTetrisAdapter: NSObject, TetrisAdapter, UICollectionViewDataSource {
     let name = "Dwifft"
     let comment = """
         Works, but doesn't seem to be doing moves, so the block pieces jump between sections.
         """
-    var collectionView: UICollectionView! {
-        didSet {
-            diffCalculator = CollectionViewDiffCalculator(collectionView: collectionView)
-        }
+
+    func configure(collectionView: UICollectionView, cellProvider: @escaping (UICollectionView, IndexPath) -> UICollectionViewCell) {
+        self.collectionView = collectionView
+        collectionView.dataSource = self
+        self.cellProvider = cellProvider
+        diffCalculator = CollectionViewDiffCalculator(collectionView: collectionView)
     }
     
+    private var collectionView: UICollectionView!
+    private var cellProvider: ((UICollectionView, IndexPath) -> UICollectionViewCell)!
     private var diffCalculator: CollectionViewDiffCalculator<TetrisRow, TetrisBlock>!
     
     func setBoard(_ tetrisBoard: TetrisBoard) {
@@ -28,17 +32,22 @@ class DwifftTetrisAdapter: TetrisAdapter {
             completion?(true)
         }
     }
+
+    // MARK: UICollectionViewDataSource
     
-    func numberOfSections() -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return diffCalculator.numberOfSections()
     }
-    
-    func numberOfRows(in section: Int) -> Int {
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return diffCalculator.numberOfObjects(inSection: section)
     }
-    
-    func tetrisBlock(for indexPath: IndexPath) -> TetrisBlock {
-        return diffCalculator.value(atIndexPath: indexPath)
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = cellProvider(collectionView, indexPath)
+        let block = diffCalculator.value(atIndexPath: indexPath)
+        cell.configure(with: block)
+        return cell
     }
 }
 

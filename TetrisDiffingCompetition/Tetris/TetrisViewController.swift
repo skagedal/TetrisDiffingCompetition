@@ -4,7 +4,7 @@
 
 import UIKit
 
-class TetrisViewController: UIViewController, UICollectionViewDataSource {
+class TetrisViewController: UIViewController {
     @IBOutlet private var collectionView: UICollectionView!
     
     private var adapter: TetrisAdapter!
@@ -23,9 +23,10 @@ class TetrisViewController: UIViewController, UICollectionViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        adapter.collectionView = collectionView
+        adapter.configure(collectionView: collectionView) { collectionView, indexPath in
+            collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        }
         adapter.setBoard(game.currentBoard)
-        collectionView.dataSource = self
     }
 
     // MARK: Actions
@@ -117,24 +118,6 @@ class TetrisViewController: UIViewController, UICollectionViewDataSource {
     private func stopTimer() {
         timer?.invalidate()
         timer = nil
-    }
-    
-    // MARK: - UICollectionViewDataSource
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return adapter.numberOfSections()
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return adapter.numberOfRows(in: section)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let block = adapter.tetrisBlock(for: indexPath)
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.configure(with: block)
-        
-        return cell
     }
 }
 
