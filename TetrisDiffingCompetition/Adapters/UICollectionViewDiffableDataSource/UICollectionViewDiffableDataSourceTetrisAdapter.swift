@@ -6,40 +6,42 @@ import UIKit
 
 @available(iOS 13.0, *)
 class UICollectionViewDiffableDataSourceTetrisAdapter: TetrisAdapter {
-    let name = "class UICollectionViewDiffableDataSource"
+    let name = "DiffableDataSource"
     let comment = """
-        Added in iOS 13.
+        Added in iOS 13, this is the one we're all soon gonna use.  And it works great.
         """
     
     private var dataSource: UICollectionViewDiffableDataSource<TetrisRow, TetrisBlock>!
     
     func configure(collectionView: UICollectionView, cellProvider: @escaping (UICollectionView, IndexPath) -> UICollectionViewCell) {
-        dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { collectionView, indexPath, item in
+        dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { collectionView, indexPath, block in
             let cell = cellProvider(collectionView, indexPath)
-            let block = self.tetrisBlock(for: indexPath)
             cell.configure(with: block)
             return cell
         }
     }
     
-    func setBoard(_ tetrisBoard: TetrisBoard) {
-        
+    func setBoard(_ board: TetrisBoard) {
+        dataSource.apply(board.snapshot)
     }
     
     func animateBoard(to board: TetrisBoard, completion: ((Bool) -> Void)?) {
-        
+        dataSource.apply(board.snapshot, animatingDifferences: true)
+        // Since we don't get a completion block
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            completion?(true)
+        }
     }
-    
-    func numberOfSections() -> Int {
-        return 0
-        
-    }
-    
-    func numberOfRows(in section: Int) -> Int {
-        return 0
-    }
-    
-    func tetrisBlock(for indexPath: IndexPath) -> TetrisBlock {
-        return TetrisBlock(identifier: 0, type: .empty)
+}
+
+@available(iOS 13.0, *)
+private extension TetrisBoard {
+    var snapshot: NSDiffableDataSourceSnapshot<TetrisRow, TetrisBlock> {
+        let snapshot = NSDiffableDataSourceSnapshot<TetrisRow, TetrisBlock>()
+        for row in rows {
+            snapshot.appendSections([row])
+            snapshot.appendItems(row.blocks, toSection: row)
+        }
+        return snapshot
     }
 }
