@@ -88,8 +88,8 @@ extension TetrisBlock: Equatable, Hashable {
         return lhs.identifier == rhs.identifier
     }
     
-    var hashValue: Int {
-        return identifier
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(identifier)
     }
 }
 
@@ -114,8 +114,8 @@ extension TetrisRow: Equatable, Hashable {
         return lhs.identifier == rhs.identifier
     }
     
-    var hashValue: Int {
-        return identifier
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(identifier)
     }
 }
 
