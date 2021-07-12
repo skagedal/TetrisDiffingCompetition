@@ -62,12 +62,12 @@ extension Tetromino {
 }
 
 func rotatedClockwise<T>(_ array: [[T]]) -> [[T]] {
-    let indices = (0..<array.count)
+    let indices = array.indices
     return indices.map { y in indices.reversed().map { x in array[x][y] } }
 }
 
 func rotatedCounterClockwise<T>(_ array: [[T]]) -> [[T]] {
-    let indices = (0..<array.count)
+    let indices = array.indices
     return indices.reversed().map { y in indices.map { x in array[x][y] } }
 }
 
